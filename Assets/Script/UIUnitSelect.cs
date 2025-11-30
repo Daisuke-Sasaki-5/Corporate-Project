@@ -2,15 +2,24 @@ using UnityEngine;
 
 public class UIUnitSelect : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public UnitPlacer placer;
+
+    public GameObject swordPrefab;
+    public GameObject spearPrefab;
+    public GameObject bowPrefab;
+
+    public void PickSword()
     {
-        
+        placer.SelectUnit(swordPrefab);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PickSpear()
     {
-        
+        placer.SelectUnit(spearPrefab);
+    }
+
+    public void PickBow()
+    {
+       placer.SelectUnit(bowPrefab);
     }
 }

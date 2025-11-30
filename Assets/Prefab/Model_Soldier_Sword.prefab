@@ -48,9 +48,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4196952040310456772, guid: ce04d2fe466769a41a7edffc598d21c1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ce04d2fe466769a41a7edffc598d21c1, type: 3}
       propertyPath: m_Name
       value: Model_Soldier_Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ce04d2fe466769a41a7edffc598d21c1, type: 3}
+      propertyPath: m_TagString
+      value: PlayerUnit
       objectReference: {fileID: 0}
     - target: {fileID: 5019022805392185085, guid: ce04d2fe466769a41a7edffc598d21c1, type: 3}
       propertyPath: m_IsActive
@@ -67,5 +75,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ce04d2fe466769a41a7edffc598d21c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -9113244677811495035}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ce04d2fe466769a41a7edffc598d21c1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3910703668620554477}
   m_SourcePrefab: {fileID: 100100000, guid: ce04d2fe466769a41a7edffc598d21c1, type: 3}
+--- !u!1 &2920597003791692518 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ce04d2fe466769a41a7edffc598d21c1, type: 3}
+  m_PrefabInstance: {fileID: 2614729162373451703}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-9113244677811495035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2920597003791692518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5eaf01b92669c469598b75bb781cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemy: 0
+  attackAnimName: Model_Soldier_Sword_Attack
+--- !u!114 &-3910703668620554477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2920597003791692518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feef3b1776f623f4498832d197d85019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPower: 10
+  AttackRange: 0.5
+  moveSpeed: 1
+  hp: 100
+  unityType: 0

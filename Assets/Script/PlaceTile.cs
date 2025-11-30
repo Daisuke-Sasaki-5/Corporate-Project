@@ -9,8 +9,12 @@ public class PlaceTile : MonoBehaviour
     {
         if (isOccupied) return false;
 
-        Instantiate(unitPrefab, transform.position, Quaternion.identity);
+        Vector3 spwanPos = transform.position;
+        spwanPos.y = 0f;
+
+        Instantiate(unitPrefab, spwanPos, Quaternion.identity);
         isOccupied = true;
+
         return true;
     }
 }

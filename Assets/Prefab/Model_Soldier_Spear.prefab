@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Model_Soldier_Spear
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_TagString
+      value: PlayerUnit
+      objectReference: {fileID: 0}
     - target: {fileID: 5019022805392185085, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -71,5 +75,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1503126185136429969}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4759598122024095923}
   m_SourcePrefab: {fileID: 100100000, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+--- !u!1 &5604960008132078897 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+  m_PrefabInstance: {fileID: 4686480020904251488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1503126185136429969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604960008132078897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5eaf01b92669c469598b75bb781cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemy: 0
+  attackAnimName: Model_Soldier_Spear_Attack
+--- !u!114 &-4759598122024095923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5604960008132078897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feef3b1776f623f4498832d197d85019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPower: 10
+  AttackRange: 0.5
+  moveSpeed: 1
+  hp: 100
+  unityType: 1

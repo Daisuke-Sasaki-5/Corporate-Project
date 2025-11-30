@@ -1,13 +1,18 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject escUI;
     public static GameManager instance;
 
+    [Header("UI")]
+    [SerializeField] private GameObject startUI;
+    [SerializeField] private GameObject escUI;
+
+    private bool isGameStart = false;
     private bool isGameOver = false; // 勝敗が決まったかどうか
 
     private void Awake()
@@ -24,14 +29,60 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        if (startUI != null)
+        {
+            startUI.SetActive(false);
+        }
+
         if(escUI != null)
         {
             escUI.SetActive(false);
         }
+
+        StartCoroutine(WaitForFadeThenInit());
+    }
+
+    private IEnumerator WaitForFadeThenInit()
+    {
+        if(FadeManager.instance != null)
+        {
+            while(!FadeManager.instance.IsFadeComplete)
+                yield return null;
+        }
+
+        InitGame();
+    }
+
+    // ==== ゲーム初期化(配置フェーズ) ====
+    private void InitGame()
+    {
+        isGameStart = false;
+        isGameOver = false;
+
+        Time.timeScale = 0f;
+
+        if(startUI != null)
+            startUI.SetActive(true);
+    }
+
+    // ==== Startボタンから呼ぶ ====
+    public void onClickStartGame()
+    {
+        StartGame();
+    }
+
+    private void StartGame()
+    {
+        isGameStart = true;
+        Time.timeScale = 1f;
+
+        if(startUI != null)
+            startUI.SetActive(false);
     }
 
     void Update()
     {
+        if (!isGameStart) return;
         if (isGameOver) return;
 
         CheckGameState();
@@ -66,7 +117,7 @@ public class GameManager : MonoBehaviour
        isGameOver = true;
         Debug.Log("勝利");
 
-        ShowUI();
+        ShowEndUI();
     }
 
     /// <summary>
@@ -77,10 +128,10 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
         Debug.Log("敗北");
 
-        ShowUI();
+        ShowEndUI();
     }
 
-    private void ShowUI()
+    private void ShowEndUI()
     {
         if (escUI != null)
         {

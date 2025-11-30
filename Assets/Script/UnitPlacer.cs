@@ -18,7 +18,13 @@ public class UnitPlacer : MonoBehaviour
 
                 if(tile != null)
                 {
-                    tile.PlaceUnit(selectedUnityPrefab);
+                    bool placed = tile.PlaceUnit(selectedUnityPrefab);
+                    if (placed)
+                    {
+                        // îzíuê¨å˜ Å® ëIëâèú
+                        selectedUnityPrefab = null;
+                    }
+
                 }
             }
         }
