@@ -63,6 +63,9 @@ public class GameManager : MonoBehaviour
 
         if(startUI != null)
             startUI.SetActive(true);
+
+        // 敵を配置
+        FindObjectOfType<EnemySpawner>().SpawnEnemies();
     }
 
     // ==== Startボタンから呼ぶ ====

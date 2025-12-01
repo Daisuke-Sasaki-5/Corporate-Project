@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1482242503955984904
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.0719192
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.000000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5805435006190399614, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4196952040310456772, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_Name
+      value: SpearEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_TagString
+      value: EnemyUnit
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019022805392185085, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d9151667b6eb4c14cbba42807c6a1747, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3591424631495516045}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6138138985342015847}
+  m_SourcePrefab: {fileID: 100100000, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+--- !u!1 &1752061221215211353 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
+  m_PrefabInstance: {fileID: 1482242503955984904}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3591424631495516045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752061221215211353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1df06cfd07c7df45b526b24156e70ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemy: 1
+  attackAnimName: Model_Soldier_Spear_Attack
+--- !u!114 &6138138985342015847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752061221215211353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feef3b1776f623f4498832d197d85019, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPower: 10
+  AttackRange: 0.5
+  moveSpeed: 1
+  hp: 100
+  unityType: 1

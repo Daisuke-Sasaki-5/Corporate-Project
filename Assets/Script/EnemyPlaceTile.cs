@@ -1,22 +1,22 @@
 using System;
 using UnityEngine;
 
-public class PlaceTile : MonoBehaviour
+public class EnemyPlaceTile : MonoBehaviour
 {
     public bool isOccupied = false;
 
-    public bool PlaceUnit(GameObject unitPrefab)
+    public bool EnemyPlaceUnit(GameObject enemyPrefab)
     {
         if (isOccupied) return false;
 
         Vector3 spwanPos = transform.position;
         spwanPos.y = 0f;
 
-       GameObject unit = Instantiate(unitPrefab, spwanPos, Quaternion.identity);
+        GameObject unit = Instantiate(enemyPrefab, spwanPos, Quaternion.LookRotation(Vector3.back));
 
         // UnitStats‚ðŽæ“¾
         UnitStats stats = unit.GetComponent<UnitStats>();
-        if(stats != null)
+        if (stats != null)
         {
             ApplyColor(stats.unityType);
         }
@@ -28,7 +28,7 @@ public class PlaceTile : MonoBehaviour
     private void ApplyColor(UnitStats.UnityType unityType)
     {
         Renderer rend = GetComponent<Renderer>();
-        switch(unityType)
+        switch (unityType)
         {
             case UnitStats.UnityType.Sword:
                 rend.material.color = Color.red;
