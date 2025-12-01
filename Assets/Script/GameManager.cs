@@ -39,6 +39,14 @@ public class GameManager : MonoBehaviour
         placedCount[type]++;
     }
 
+    public void RemovePlaceUnit(UnitStats.UnityType type)
+    {
+        placedCount[type]--;
+
+        if (placedCount[type] < 0)
+            placedCount[type] = 0;
+    }
+
     public void ResetPlacedUnits()
     {
         placedCount[UnitStats.UnityType.Sword] = 0;

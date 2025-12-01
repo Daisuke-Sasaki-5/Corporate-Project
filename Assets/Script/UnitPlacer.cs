@@ -16,8 +16,35 @@ public class UnitPlacer : MonoBehaviour
     {
         UpdatePreview(); // 常にプレビュー更新
 
-        
+        // ==== 右クリックで削除 ====
+        if(Input.GetMouseButtonDown(1))
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if(Physics.Raycast(ray, out RaycastHit hit))
+            {
+                PlaceTile tile = hit.collider.GetComponent<PlaceTile>();
+                if(tile != null)
+                {
+                    // placeUnit → UnitStats → タイプ取得
+                    UnitStats stats = tile.placedUnit.GetComponent<UnitStats>();
 
+                    if(stats != null)
+                    {
+                        // GameManager側のカウント減らす
+                        GameManager.instance.RemovePlaceUnit(stats.unityType);
+                    }
+
+                    // ユニット削除
+                    tile.RemoveUnit();
+
+                    // プレビュー中なら削除
+                    DestroyPreview();
+                    selectedUnityPrefab = null;
+                }
+            }
+        }
+
+        // ==== 左クリックで配置 ====
         if(Input.GetMouseButtonDown(0))
         {
             if (selectedUnityPrefab == null) return;
