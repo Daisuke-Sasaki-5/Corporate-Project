@@ -1,5 +1,7 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class UnitPlacer : MonoBehaviour
 {
@@ -8,14 +10,30 @@ public class UnitPlacer : MonoBehaviour
     private GameObject previewObject; // プレビュー用
     private PlaceTile currentTile; // 現在ホバー中のタイル
 
+    bool placed = false;
+
     private void Update()
     {
         UpdatePreview(); // 常にプレビュー更新
 
-        if (selectedUnityPrefab == null) return;
+        
 
         if(Input.GetMouseButtonDown(0))
         {
+            if (selectedUnityPrefab == null) return;
+
+            // Prefabからユニットタイプ取得
+            UnitStats stats = selectedUnityPrefab.GetComponent<UnitStats>();
+            if(stats != null)
+            {
+                // 上限チェック
+                if(!GameManager.instance.CanPlaceUnit(stats.unityType))
+                {
+                    Debug.Log("上限に達しています");
+                    return; // 配置しない
+                }
+            }
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             if(Physics.Raycast(ray, out RaycastHit hit))
@@ -27,7 +45,10 @@ public class UnitPlacer : MonoBehaviour
                     bool placed = tile.PlaceUnit(selectedUnityPrefab);
                     if (placed)
                     {
-                        // 配置成功 → 選択解除
+                        // 配置成功 → 選択解除とカウント増加
+
+                        GameManager.instance.AddPlacedUnit(stats.unityType);
+
                         selectedUnityPrefab = null;
                     }
 
