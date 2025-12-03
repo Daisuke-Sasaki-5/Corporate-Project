@@ -78,30 +78,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a088ba9c0cad4849b5f14286f96eba9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1542303723089206960}
+      addedObject: {fileID: 227463076933196839}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a088ba9c0cad4849b5f14286f96eba9, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 227463076933196839}
+      addedObject: {fileID: 3422474458801523697}
   m_SourcePrefab: {fileID: 100100000, guid: 4a088ba9c0cad4849b5f14286f96eba9, type: 3}
 --- !u!1 &5411584546271457475 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a088ba9c0cad4849b5f14286f96eba9, type: 3}
   m_PrefabInstance: {fileID: 5177071016384253330}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1542303723089206960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5411584546271457475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1df06cfd07c7df45b526b24156e70ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEnemy: 1
-  attackAnimName: Model_Soldier_Bow_Attack
 --- !u!114 &227463076933196839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +101,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPower: 10
-  AttackRange: 0.5
+  AttackRange: 2
   moveSpeed: 1
-  hp: 100
+  Maxhp: 100
+  currentHP: 0
+  hpslider: {fileID: 0}
   unityType: 2
+--- !u!114 &3422474458801523697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5411584546271457475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f33e20268fabd40817c172ca3834ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemy: 1
+  state: 0
+  attackAnimName: Model_Soldier_Bow_Attack

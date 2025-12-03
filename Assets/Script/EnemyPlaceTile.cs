@@ -1,9 +1,12 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyPlaceTile : MonoBehaviour
 {
     public bool isOccupied = false;
+
+    public GameObject hpBarPrefab;
 
     public bool EnemyPlaceUnit(GameObject enemyPrefab)
     {
@@ -13,6 +16,8 @@ public class EnemyPlaceTile : MonoBehaviour
         spwanPos.y = 0f;
 
         GameObject unit = Instantiate(enemyPrefab, spwanPos, Quaternion.LookRotation(Vector3.back));
+
+        CreateHPBar(unit);
 
         // UnitStatsÇéÊìæ
         UnitStats stats = unit.GetComponent<UnitStats>();
@@ -40,5 +45,20 @@ public class EnemyPlaceTile : MonoBehaviour
                 rend.material.color = Color.green;
                 break;
         }
+    }
+
+    private void CreateHPBar(GameObject placedUnit)
+    {
+        // HPÉoÅ[ê∂ê¨
+        GameObject hpobj = Instantiate(hpBarPrefab, placedUnit.transform);
+
+        hpobj.transform.localPosition = new Vector3(0, 0.5f, 0); // ì™ÇÃè„Ç…ê›íË
+
+        Slider slider = hpobj.GetComponentInChildren<Slider>();
+        UnitStats stats = placedUnit.GetComponent<UnitStats>();
+
+        stats.hpslider = slider;
+        slider.maxValue = stats.Maxhp;
+        slider.value = stats.currentHP;
     }
 }

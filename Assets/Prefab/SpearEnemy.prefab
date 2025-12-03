@@ -78,30 +78,16 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3591424631495516045}
+      addedObject: {fileID: 6138138985342015847}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6138138985342015847}
+      addedObject: {fileID: -6548405727596102521}
   m_SourcePrefab: {fileID: 100100000, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
 --- !u!1 &1752061221215211353 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: ee4f721f82c44d641b1d5426d91db22d, type: 3}
   m_PrefabInstance: {fileID: 1482242503955984904}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3591424631495516045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1752061221215211353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1df06cfd07c7df45b526b24156e70ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isEnemy: 1
-  attackAnimName: Model_Soldier_Spear_Attack
 --- !u!114 &6138138985342015847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,5 +103,22 @@ MonoBehaviour:
   attackPower: 10
   AttackRange: 0.5
   moveSpeed: 1
-  hp: 100
+  Maxhp: 100
+  currentHP: 0
+  hpslider: {fileID: 0}
   unityType: 1
+--- !u!114 &-6548405727596102521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1752061221215211353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f33e20268fabd40817c172ca3834ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isEnemy: 1
+  state: 0
+  attackAnimName: Model_Soldier_Spear_Attack

@@ -84,11 +84,15 @@ public class UnitController : MonoBehaviour
     /// <param name="targetPos"></param>
     void MoveTowards(Vector3 targetPos)
     {
-        Vector3 dir = (targetPos - transform.position).normalized;
-        transform.position += dir * stats.moveSpeed * Time.deltaTime;
-        transform.LookAt(targetPos);
+        // ==== ‚í‚¸‚©‚Éƒ‰ƒ“ƒ_ƒ€‚Å‚¸‚ê‚½ˆÊ’u‚ð–Ú•W‚É‚·‚é
+        Vector3 offSet = new Vector3(Mathf.Sin((gameObject.GetHashCode() % 10) * 0.3f) * 0.5f, 0, Mathf.Cos((gameObject.GetHashCode() % 10) * 0.3f) * 0.5f);
+        Vector3 moveTarget = targetPos + offSet;
 
-        Debug.Log($"{gameObject.name} moving towards {targetPos}");
+        Vector3 dir = (moveTarget - transform.position).normalized;
+        transform.position += dir * stats.moveSpeed * Time.deltaTime;
+        transform.LookAt(moveTarget);
+
+        Debug.Log($"{gameObject.name} moving towards {moveTarget}");
     }
 
     /// <summary>

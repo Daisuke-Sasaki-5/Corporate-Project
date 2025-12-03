@@ -17,7 +17,16 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'Model_Soldier_Spear_Attack' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'spine_a_sh' has translation
+      animation that will be discarded.\n\t'spine_a_sh' is inbetween humanoid transforms
+      and has rotation animation that will be discarded.\n\t'spine_b_sh' is inbetween
+      humanoid transforms and has rotation animation that will be discarded.\n\t'l_shoulder_sh'
+      has translation animation that will be discarded.\n\t'r_shoulder_sh' has translation
+      animation that will be discarded.\n\t'l_arm_a_s' has translation animation
+      that will be discarded.\n\t'r_arm_a_s' has translation animation that will
+      be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -29,7 +38,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Model_Soldier_Spear_Attack
+      takeName: Model_Soldier_Spear_Attack
+      internalID: -2102960639982442381
+      firstFrame: 0
+      lastFrame: 35
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []
@@ -79,8 +117,338 @@ ModelImporter:
   importAnimation: 1
   humanDescription:
     serializedVersion: 3
-    human: []
-    skeleton: []
+    human:
+    - boneName: root_sh
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: l_shoulder_sh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: r_shoulder_sh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: l_arm_a_sh
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: r_arm_a_sh
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: l_arm_b_sh
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: r_arm_b_sh
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: spine_a_s
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: head_s
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: l_arm_a_s
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: r_arm_a_s
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: l_arm_b_s
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: r_arm_b_s
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: l_hand_s
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: r_hand_s
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Model_Soldier_Spear(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: persp1
+      parentName: Model_Soldier_Spear(Clone)
+      position: {x: 0.057446674, y: 0.25169617, z: 0.52720827}
+      rotation: {x: -0.0026002675, y: -0.99680924, z: 0.07091318, w: -0.036551386}
+      scale: {x: 1, y: 1, z: 1}
+    - name: cavalry
+      parentName: Model_Soldier_Spear(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: sh_human
+      parentName: cavalry
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: model
+      parentName: sh_human
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: weapon
+      parentName: sh_human
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bow
+      parentName: weapon
+      position: {x: -5.3602954e-18, y: -2.6645352e-17, z: 7.303186e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: sword
+      parentName: weapon
+      position: {x: -5.3602954e-18, y: -2.6645352e-17, z: 7.303186e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: shield
+      parentName: weapon
+      position: {x: -5.3602954e-18, y: -2.6645352e-17, z: 7.303186e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: spear
+      parentName: weapon
+      position: {x: -5.3602954e-18, y: -2.6645352e-17, z: 7.303186e-18}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: root_sh
+      parentName: cavalry
+      position: {x: -0.0039502624, y: 0.16299999, z: -0.07382446}
+      rotation: {x: 0.2633694, y: 0.022747954, z: 0.00315793, w: 0.9644217}
+      scale: {x: 1, y: 1, z: 1}
+    - name: spine_a_sh
+      parentName: root_sh
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: spine_b_sh
+      parentName: spine_a_sh
+      position: {x: -0.072, y: 0, z: 0}
+      rotation: {x: -7.8886067e-31, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: l_shoulder_sh
+      parentName: spine_b_sh
+      position: {x: -0.015, y: -0.002, z: -0.016}
+      rotation: {x: 0.012920706, y: -0.01337981, z: 0.59517425, w: 0.8033814}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: l_arm_a_sh
+      parentName: l_shoulder_sh
+      position: {x: -0.059, y: 0, z: 0}
+      rotation: {x: 0.00000002125652, y: 0.000000020888724, z: 0.026176956, w: 0.99965733}
+      scale: {x: 0.9999999, y: 0.99999994, z: 0.9999997}
+    - name: l_arm_b_sh
+      parentName: l_arm_a_sh
+      position: {x: -0.043, y: 0, z: 0}
+      rotation: {x: 0.0014593553, y: 0.018542815, z: 0.155849, w: 0.9876058}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000002}
+    - name: r_shoulder_sh
+      parentName: spine_b_sh
+      position: {x: -0.015, y: -0.002, z: 0.016}
+      rotation: {x: -0.006066172, y: 0.0062816427, z: 0.594051, w: 0.80438}
+      scale: {x: 0.9999999, y: 0.99999994, z: 1.0000001}
+    - name: r_arm_a_sh
+      parentName: r_shoulder_sh
+      position: {x: -0.059, y: 0, z: 0}
+      rotation: {x: 0.00000002125652, y: 0.000000020888725, z: 0.026176926, w: 0.9996574}
+      scale: {x: 1.0000006, y: 1.0000005, z: 1.0000005}
+    - name: r_arm_b_sh
+      parentName: r_arm_a_sh
+      position: {x: -0.043, y: 0, z: 0}
+      rotation: {x: -0.0006851165, y: -0.008705589, z: 0.1573486, w: 0.9875046}
+      scale: {x: 1, y: 1.0000001, z: 0.99999994}
+    - name: neck_a_sh
+      parentName: spine_b_sh
+      position: {x: -0.04, y: 0, z: 0}
+      rotation: {x: 7.412866e-31, y: 0.000000059604645, z: -0.3420202, w: 0.9396927}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: head_sh
+      parentName: neck_a_sh
+      position: {x: -0.060698308, y: -0.004314366, z: 0}
+      rotation: {x: -5.9151944e-30, y: -0.000000059604645, z: 0.3420202, w: 0.9396927}
+      scale: {x: 1.0000001, y: 1.0000005, z: 1.0000008}
+    - name: spine_a_s
+      parentName: spine_a_sh
+      position: {x: -0.040331475, y: 0.057303846, z: 0}
+      rotation: {x: 0.00044986594, y: 0.00044977653, z: -0.71963364, w: 0.69435376}
+      scale: {x: 1.0000002, y: 0.99999994, z: 1.0000002}
+    - name: l_arm_a_s
+      parentName: spine_a_s
+      position: {x: -0.02058262, y: 0.002430566, z: -0.0185668}
+      rotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+      scale: {x: 1.0000002, y: 1.0000007, z: 1.0000006}
+    - name: l_arm_b_s
+      parentName: l_arm_a_s
+      position: {x: -0.022, y: 0, z: 0}
+      rotation: {x: 0.000000084293696, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: l_hand_s
+      parentName: l_arm_b_s
+      position: {x: -0.022, y: 0, z: 0}
+      rotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071069}
+      scale: {x: 1.0000004, y: 1.0000007, z: 1.0000008}
+    - name: shield_s
+      parentName: l_hand_s
+      position: {x: -0.008, y: -0.002000001, z: 0.000000001410669}
+      rotation: {x: -0.7071068, y: -3.4732952e-14, z: 3.492272e-14, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: bow_a_s
+      parentName: l_hand_s
+      position: {x: -0.008, y: -0.002000001, z: 0.000000001410669}
+      rotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+      scale: {x: 1.0000001, y: 1.0000012, z: 1.0000012}
+    - name: bow_b_s
+      parentName: bow_a_s
+      position: {x: -1.953993e-16, y: -0.006, z: -1.4210849e-16}
+      rotation: {x: 0.000000029802315, y: -0, z: 0.7933534, w: 0.60876155}
+      scale: {x: 1.0000006, y: 1.0000001, z: 1.0000004}
+    - name: bow_c_s
+      parentName: bow_a_s
+      position: {x: 1.865175e-16, y: 0.006, z: -3.907985e-16}
+      rotation: {x: 0.6087614, y: -0.7933534, z: 0.000000029802312, w: -0.000000029802312}
+      scale: {x: 1.0000001, y: 1, z: 0.9999998}
+    - name: r_arm_a_s
+      parentName: spine_a_s
+      position: {x: -0.01981975, y: -0.002004247, z: 0.021903628}
+      rotation: {x: -0, y: -0.7071068, z: -0, w: -0.7071068}
+      scale: {x: 1.0000006, y: 1.0000002, z: 1.0000006}
+    - name: r_arm_b_s
+      parentName: r_arm_a_s
+      position: {x: -0.022, y: 0, z: 0}
+      rotation: {x: -0.00000002107342, y: -0.00000011920926, z: -0.00000006322026, w: -1}
+      scale: {x: 1.000001, y: 1.0000012, z: 1.0000008}
+    - name: r_hand_s
+      parentName: r_arm_b_s
+      position: {x: -0.022, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: -0.0000000395902, z: -0.00000012899716, w: 0.7071068}
+      scale: {x: 1.0000007, y: 0.9999997, z: 1.0000006}
+    - name: sword_s
+      parentName: r_hand_s
+      position: {x: -0.0069999993, y: -0.002000001, z: -0.003000002}
+      rotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+      scale: {x: 1.0000001, y: 0.9999998, z: 0.99999994}
+    - name: spear_s
+      parentName: r_hand_s
+      position: {x: -0.0069999993, y: -0.002000001, z: -0.003000002}
+      rotation: {x: -0, y: -0, z: -1.7763564e-15, w: 1}
+      scale: {x: 0.9999998, y: 0.99999994, z: 0.99999994}
+    - name: head_s
+      parentName: spine_a_s
+      position: {x: -0.039574, y: 6.661338e-16, z: 3.1380588e-16}
+      rotation: {x: -0, y: -0, z: -0, w: 1}
+      scale: {x: 1.0000006, y: 1.0000004, z: 1.0000004}
+    - name: pelvis_sh
+      parentName: root_sh
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.11061589, y: -0.69840115, z: 0.11061589, w: 0.6984011}
+      scale: {x: 1.0000002, y: 1, z: 1.0000002}
+    - name: r_leg_a_sh
+      parentName: pelvis_sh
+      position: {x: -0.039, y: -0.0139999995, z: -0.02}
+      rotation: {x: 0.000000033527613, y: 0.000000029802322, z: 0.4924235, w: 0.8703557}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000004}
+    - name: r_leg_b_sh
+      parentName: r_leg_a_sh
+      position: {x: -0.073, y: 0, z: 0}
+      rotation: {x: 0.00000004949043, y: -0.000000033321378, z: -0.13052623, w: -0.9914449}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: l_leg_a_sh
+      parentName: pelvis_sh
+      position: {x: -0.039, y: -0.0139999995, z: 0.02}
+      rotation: {x: 0.000000033527613, y: 0.000000029802322, z: 0.4924235, w: 0.8703557}
+      scale: {x: 1.0000002, y: 1.0000001, z: 1.0000004}
+    - name: l_leg_b_sh
+      parentName: l_leg_a_sh
+      position: {x: -0.073, y: 0, z: 0}
+      rotation: {x: 0.00000004949043, y: -0.000000033321378, z: -0.13052623, w: -0.9914449}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: tail_a_sh
+      parentName: pelvis_sh
+      position: {x: -0.047, y: 0.024999999, z: 0.00000001237137}
+      rotation: {x: -0, y: 0.000000029802322, z: -0.15643449, w: 0.9876884}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+    - name: tail_b_sh
+      parentName: tail_a_sh
+      position: {x: -0.04346321, y: -0.0001227733, z: -0.000003137853}
+      rotation: {x: -4.4408916e-16, y: -0, z: 0.000000014901159, w: 1}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5

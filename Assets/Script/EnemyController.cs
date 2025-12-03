@@ -50,21 +50,27 @@ public class EnemyController : MonoBehaviour
     /// <returns></returns>
     GameObject FindClosestTarget()
     {
-        GameObject[] targets = GameObject.FindGameObjectsWithTag("PlayerUnit");
+        //GameObject[] targets = GameObject.FindGameObjectsWithTag("PlayerUnit");
 
-        GameObject closest = null;
-        float minDist = Mathf.Infinity;
+        //GameObject closest = null;
+        //float minDist = Mathf.Infinity;
 
-        foreach (var t in targets)
-        {
-            float dist = Vector3.Distance(transform.position, t.transform.position);
-            if (dist < minDist)
-            {
-                minDist = dist;
-                closest = t;
-            }
-        }
-        return closest;
+        //foreach (var t in targets)
+        //{
+        //    float dist = Vector3.Distance(transform.position, t.transform.position);
+        //    if (dist < minDist)
+        //    {
+        //        minDist = dist;
+        //        closest = t;
+        //    }
+        //}
+        //return closest;
+
+        string targetTag = isEnemy ? "PlayerUnit" : "EnemyUnit";
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(targetTag);
+
+        if( targets.Length == 0 ) return null;
+        return targets[Random.Range(0, targets.Length)];
     }
 
     /// <summary>
@@ -73,9 +79,13 @@ public class EnemyController : MonoBehaviour
     /// <param name="targetPos"></param>
     void MoveTowards(Vector3 targetPos)
     {
-        Vector3 dir = (targetPos - transform.position).normalized;
+        // ==== ‚í‚¸‚©‚Éƒ‰ƒ“ƒ_ƒ€‚Å‚¸‚ê‚½ˆÊ’u‚ð–Ú•W‚É‚·‚é
+        Vector3 offSet = new Vector3(Mathf.Sin((gameObject.GetHashCode() % 10) * 0.3f) * 0.5f, 0, Mathf.Cos((gameObject.GetHashCode() % 10) * 0.3f) * 0.5f);
+        Vector3 moveTarget = targetPos + offSet;
+
+        Vector3 dir = (moveTarget - transform.position).normalized;
         transform.position += dir * stats.moveSpeed * Time.deltaTime;
-        transform.LookAt(targetPos);
+        transform.LookAt(moveTarget);
     }
 
     /// <summary>

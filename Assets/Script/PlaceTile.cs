@@ -1,5 +1,7 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaceTile : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class PlaceTile : MonoBehaviour
 
     private Renderer rende;
     private Color defaultcolor; // デフォルトの色を記録
+
+    public GameObject hpBarPrefab;
 
     private void Awake()
     {
@@ -24,15 +28,35 @@ public class PlaceTile : MonoBehaviour
 
        placedUnit = Instantiate(unitPrefab, spwanPos, Quaternion.identity);
 
+        CreateHPBar(placedUnit);
+
         // UnitStatsを取得
         UnitStats stats = placedUnit.GetComponent<UnitStats>();
         if(stats != null)
         {
+            // 報酬による強化値を適用する
+           UnitManager.instance.ApplyStatsToUnit(stats); 
+
             ApplyColor(stats.unityType);
         }
 
         isOccupied = true;
         return true;
+    }
+
+    private void CreateHPBar(GameObject placedUnit)
+    {
+        // HPバー生成
+        GameObject hpobj = Instantiate(hpBarPrefab,placedUnit.transform);
+
+        hpobj.transform.localPosition = new Vector3(0, 0.5f, 0); // 頭の上に設定
+
+        Slider slider = hpobj.GetComponentInChildren<Slider>();
+        UnitStats stats = placedUnit.GetComponent<UnitStats>();
+
+        stats.hpslider = slider;
+        slider.maxValue = stats.Maxhp;
+        slider.value = stats.currentHP;
     }
 
     public void RemoveUnit()

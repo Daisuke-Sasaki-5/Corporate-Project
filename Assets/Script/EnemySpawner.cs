@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<EnemyPlaceTile> enemyTiles;
     [SerializeField] private List<GameObject> enemyPrefabs;
 
-    [SerializeField] private int spawnCount = 5; // ‰½‘Ì—N‚©‚¹‚é‚©
+    [SerializeField] private int spawnCount; // ‰½‘Ì—N‚©‚¹‚é‚©
 
     private void Awake()
     {

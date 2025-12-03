@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject startUI;
     [SerializeField] private GameObject escUI;
+    [SerializeField] private RewardUI rewardUI;
 
     // ユニット最大数
     public Dictionary<UnitStats.UnityType, int> unitLimit = new Dictionary<UnitStats.UnityType, int>()
@@ -29,9 +31,20 @@ public class GameManager : MonoBehaviour
         {UnitStats.UnityType.Bow, 0 },
     };
 
+    public int totalUnitLimit = 3; // 初期値3体
+    public int currentTotalPlaced = 0;
+
     public bool CanPlaceUnit(UnitStats.UnityType type)
     {
-        return placedCount[type] < unitLimit[type];
+        // 兵種の上限
+        if (placedCount[type] >= unitLimit[type]) 
+            return false;
+
+        // 全体の上限
+        if(currentTotalPlaced >= totalUnitLimit)
+            return false;
+
+        return true;
     }
 
     public void AddPlacedUnit(UnitStats.UnityType type)
@@ -52,6 +65,8 @@ public class GameManager : MonoBehaviour
         placedCount[UnitStats.UnityType.Sword] = 0;
         placedCount[UnitStats.UnityType.Spear] = 0;
         placedCount[UnitStats.UnityType.Bow] = 0;
+
+        currentTotalPlaced = 0;
     }
 
     private bool isGameStart = false;
@@ -79,6 +94,11 @@ public class GameManager : MonoBehaviour
         if(escUI != null)
         {
             escUI.SetActive(false);
+        }
+
+        if(rewardUI != null && rewardUI.uiRoot != null)
+        {
+            rewardUI.uiRoot.SetActive(false);
         }
 
         StartCoroutine(WaitForFadeThenInit());
@@ -125,6 +145,7 @@ public class GameManager : MonoBehaviour
 
         if(startUI != null)
             startUI.SetActive(false);
+
     }
 
     void Update()
@@ -163,6 +184,9 @@ public class GameManager : MonoBehaviour
     {
        isGameOver = true;
         Debug.Log("勝利");
+
+        // 報酬UIを表示
+        RewardManager.instance.ShowRewards();
 
         ShowEndUI();
     }

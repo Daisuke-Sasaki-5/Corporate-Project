@@ -32,6 +32,7 @@ public class UnitPlacer : MonoBehaviour
                     {
                         // GameManager側のカウント減らす
                         GameManager.instance.RemovePlaceUnit(stats.unityType);
+                        GameManager.instance.currentTotalPlaced--;
                     }
 
                     // ユニット削除
@@ -75,6 +76,8 @@ public class UnitPlacer : MonoBehaviour
                         // 配置成功 → 選択解除とカウント増加
 
                         GameManager.instance.AddPlacedUnit(stats.unityType);
+
+                        GameManager.instance.currentTotalPlaced++;
 
                         selectedUnityPrefab = null;
                     }
