@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa770e45067122e4ca28a4b8047956ce, type: 3}
   m_Name: RewardData 1
   m_EditorClassIdentifier: 
-  rewardType: 0
+  rewardType: 1
   value: 1
   unityType: 1
   displayName: spearUnit + 1

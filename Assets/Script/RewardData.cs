@@ -2,8 +2,9 @@ using UnityEngine;
 
 public enum RewardType
 {
-    AddUnit,
-    AddMaxUnit, // 兵士の配置数増加
+    AddTotalUnit, // 全体配置数
+    AddUnitLimit, // 兵士の配置数増加
+
     AllAttackUp, // 全兵士の攻撃力
     AllHPUp, // 全兵士のHP
     UnitAttackUp, // 特定兵士の攻撃力

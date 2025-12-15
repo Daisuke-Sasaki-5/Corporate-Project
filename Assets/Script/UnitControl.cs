@@ -104,6 +104,8 @@ public class UnitControl : MonoBehaviour
     /// <exception cref="NotImplementedException"></exception>
     private void UpdateBattle()
     {
+        target = null;
+
         // ターゲットがいない、もしくは死亡していたら再検索
         if (target == null || IsDeadTarget(target))
         {
@@ -121,6 +123,7 @@ public class UnitControl : MonoBehaviour
         else
         {
             // 射程内 → 攻撃
+            Debug.Log($"[ATTACK] {gameObject.name} AP:{stats.attackPower}");
             TryAttack();
         }
     }
@@ -151,8 +154,10 @@ public class UnitControl : MonoBehaviour
             // 正面補正
             float frontBonus = Mathf.Clamp(dot,0,1f) * 2f;
 
+            float randomBias = UnityEngine.Random.Range(0f,0.3f);
+
             // スコア：距離 - 正面補正
-            float score = dist - frontBonus;
+            float score = dist - frontBonus + randomBias;
 
             if(score < bestScore)
             {
@@ -179,7 +184,7 @@ public class UnitControl : MonoBehaviour
         {
             transform.LookAt(moveTarget);
         }
-        Debug.Log($"{gameObject.name} moving towards {moveTarget}");
+        //Debug.Log($"{gameObject.name} moving towards {moveTarget}");
     }
 
     /// <summary>
@@ -205,9 +210,10 @@ public class UnitControl : MonoBehaviour
 
                 // 補正をかけた最終ダメージ
                 int finalDamage = Mathf.RoundToInt(stats.attackPower * multiplier);
+                Debug.Log(stats.attackPower);
 
                 // 敵にダメージを与える
-                enemyStats.TakeDamage(stats.attackPower);
+                enemyStats.TakeDamage(finalDamage);
 
                 Debug.Log($"{gameObject.name}({stats.unityType})→{target.name}({enemyStats.unityType})ダメージ:{finalDamage}");
             }

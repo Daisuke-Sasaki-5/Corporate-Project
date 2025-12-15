@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RewardData 9
   m_EditorClassIdentifier: 
   rewardType: 5
-  value: 0
+  value: 20
   unityType: 0
   displayName: swardHP + 20

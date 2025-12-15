@@ -35,7 +35,7 @@ public class PlaceTile : MonoBehaviour
         if(stats != null)
         {
             // 報酬による強化値を適用する
-           UnitManager.instance.ApplyStatsToUnit(stats); 
+            stats.IntializeStarts();
 
             ApplyColor(stats.unityType);
         }
@@ -44,6 +44,7 @@ public class PlaceTile : MonoBehaviour
         return true;
     }
 
+    // 各ユニットにHPバーを生成
     private void CreateHPBar(GameObject placedUnit)
     {
         // HPバー生成
@@ -55,10 +56,11 @@ public class PlaceTile : MonoBehaviour
         UnitStats stats = placedUnit.GetComponent<UnitStats>();
 
         stats.hpslider = slider;
-        slider.maxValue = stats.Maxhp;
+        slider.maxValue = stats.MaxHP;
         slider.value = stats.currentHP;
     }
 
+    // ユニットを消したときタイルの色を元に戻す
     public void RemoveUnit()
     {
         if (placedUnit != null)
@@ -72,6 +74,7 @@ public class PlaceTile : MonoBehaviour
         rende.material.color = defaultcolor;
     }
 
+    // タイルに色を反映
     private void ApplyColor(UnitStats.UnityType unityType)
     {
         Renderer rend = GetComponent<Renderer>();
@@ -87,5 +90,18 @@ public class PlaceTile : MonoBehaviour
                 rend.material.color = Color.green;
                 break;
         }
+    }
+
+    // タイルの初期化(ステージリセット用)
+    public void ResetTile()
+    {
+        if(placedUnit != null)
+        {
+            Destroy(placedUnit);
+            placedUnit = null;
+        }
+
+        isOccupied = false;
+        rende.material.color = defaultcolor;
     }
 }

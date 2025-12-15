@@ -15,13 +15,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject escUI;
     [SerializeField] private RewardUI rewardUI;
 
+    public int stage = 1;
+
     // ユニット最大数
     public Dictionary<UnitStats.UnityType, int> unitLimit = new Dictionary<UnitStats.UnityType, int>()
     {
-        {UnitStats.UnityType.Sword, 3 },
+        {UnitStats.UnityType.Sword, 2 }, // 初期数 
         {UnitStats.UnityType.Spear, 2 },
-        {UnitStats.UnityType.Bow, 1 },
+        {UnitStats.UnityType.Bow, 2 },
     };
+
+    public int totalUnitLimit = 3; // 初期値3体
 
     // 現在配置数
     public Dictionary<UnitStats.UnityType, int> placedCount = new Dictionary<UnitStats.UnityType, int>()
@@ -31,7 +35,6 @@ public class GameManager : MonoBehaviour
         {UnitStats.UnityType.Bow, 0 },
     };
 
-    public int totalUnitLimit = 3; // 初期値3体
     public int currentTotalPlaced = 0;
 
     public bool CanPlaceUnit(UnitStats.UnityType type)
@@ -177,6 +180,73 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void NextStage()
+    {
+        stage++;
+
+        Debug.Log("次のStageへ");
+
+        // プレイヤーユニット削除
+        ClearAllPlayer();
+
+        // 敵ユニット削除
+        ClearAllEnemies();
+
+        // プレイヤー・敵タイルリセット
+        ResetAllPlayerTiles();
+        ResetAllEnemyTiles();
+
+        // 敵の強化
+        EnemySpawner spawner = FindObjectOfType<EnemySpawner>();
+        if (spawner != null)
+            spawner.IncreaseDifficluty();
+
+        // 敵を再生成
+        spawner.SpawnEnemies();
+
+        // プレイヤー配置カウントリセット
+        ResetPlacedUnits();
+
+        // UIを配置フェーズに戻す
+        isGameStart = false;
+        isGameOver = false;
+
+        if (startUI != null)
+            startUI.SetActive(true);
+
+        Time.timeScale = 0f;
+    }
+
+    // 全てのプレイヤーユニット削除
+    private void ClearAllPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("PlayerUnit");
+        foreach (var p in players)
+            Destroy(p);
+    }
+
+    // 全ての敵ユニット削除
+    private void ClearAllEnemies()
+    {
+        GameObject[] enemis = GameObject.FindGameObjectsWithTag("EnemyUnit");
+        foreach (var e in enemis)
+            Destroy(e);
+    }
+
+    // プレイヤータイルリセット
+    private void ResetAllPlayerTiles()
+    {
+        PlaceTile[] tiles = FindObjectsOfType<PlaceTile>();
+        foreach (var tile  in tiles) tile.ResetTile();
+    }
+
+    // エネミータイルリセット
+    private void ResetAllEnemyTiles()
+    {
+        EnemyPlaceTile[] tiles = FindObjectsOfType<EnemyPlaceTile>();
+        foreach(var tile in tiles) tile.ResetTile();
+    }
+
     /// <summary>
     /// 勝利処理
     /// </summary>
@@ -187,8 +257,6 @@ public class GameManager : MonoBehaviour
 
         // 報酬UIを表示
         RewardManager.instance.ShowRewards();
-
-        ShowEndUI();
     }
 
     /// <summary>
@@ -213,5 +281,12 @@ public class GameManager : MonoBehaviour
     public void OnClickQuitGame()
     {
         Application.Quit();
+    }
+
+    public void OnClickRetry()
+    {
+        Time.timeScale = 1f;
+        stage = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

@@ -16,6 +16,9 @@ public class UIUnitSelect : MonoBehaviour
     public TMP_Text spearCountText;
     public TMP_Text bowCountText;
 
+    [Header("全体配置数テキスト")]
+    public TMP_Text totalUnitText;
+
     private void Update()
     {
         UpdateCountUI();
@@ -28,6 +31,8 @@ public class UIUnitSelect : MonoBehaviour
         swordCountText.text = $"{gm.placedCount[UnitStats.UnityType.Sword]}/{gm.unitLimit[UnitStats.UnityType.Sword]}";
         spearCountText.text = $"{gm.placedCount[UnitStats.UnityType.Spear]}/{gm.unitLimit[UnitStats.UnityType.Spear]}";
         bowCountText.text = $"{gm.placedCount[UnitStats.UnityType.Bow]}/{gm.unitLimit[UnitStats.UnityType.Bow]}";
+
+        totalUnitText.text = $"Total Units {gm.currentTotalPlaced}/{gm.totalUnitLimit}";
     }
 
     public void PickSword()

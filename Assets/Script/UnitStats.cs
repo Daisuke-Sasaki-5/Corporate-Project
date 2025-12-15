@@ -4,16 +4,29 @@ using UnityEngine.UI;
 public class UnitStats : MonoBehaviour
 {
     [Header("戦闘パラメーター")]
-    public int attackPower = 10; // 攻撃力
+    public int baseattackPower = 10; // 攻撃力
     public float AttackRange = 0.5f; // 攻撃範囲
     public float moveSpeed = 1f; // 移動速度
-    public int Maxhp = 100; // 体力
+    public int baseMaxhp = 100; // 体力
     public int currentHP;
+
+    [Header("バフ適用後ステータス")]
+    public int attackPower;
+    public int MaxHP;
 
     [HideInInspector] public Slider hpslider;
 
     [Header("ユニットのタイプ")]
     public UnityType unityType;
+
+  
+    private void Awake()
+    {
+        // 初期値を基礎値から作る
+        attackPower = baseattackPower;
+        MaxHP = baseMaxhp;
+        currentHP = MaxHP;
+    }
 
     // ユニットタイプ　剣　槍　弓
     public enum UnityType
@@ -23,21 +36,11 @@ public class UnitStats : MonoBehaviour
         Bow,
     }
 
-    public void Start()
-    {
-        currentHP = Maxhp;
-        if (hpslider != null)
-        {
-            hpslider.maxValue = Maxhp;
-            hpslider.value = currentHP;
-        }
-    }
-
     // ダメージ処理
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
-        currentHP = Mathf.Clamp(currentHP, 0, Maxhp);
+        currentHP = Mathf.Clamp(currentHP, 0, MaxHP);
 
         if(hpslider != null)
             hpslider.value = currentHP;
@@ -70,5 +73,10 @@ public class UnitStats : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void IntializeStarts()
+    {
+        UnitManager.instance.ApplyStatsToUnit(this);
     }
 }

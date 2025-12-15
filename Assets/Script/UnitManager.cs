@@ -6,9 +6,25 @@ public class UnitManager : MonoBehaviour
 {
     public static UnitManager instance;
 
+    // 初期化
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        foreach (UnitStats.UnityType type in System.Enum.GetValues(typeof(UnitStats.UnityType)))
+        {
+            attackBounusPerType[type] = 0;
+            hpBounusPerType[type] = 0;
+        }
     }
 
     // バフ保存用データ
@@ -21,29 +37,16 @@ public class UnitManager : MonoBehaviour
     private int globalAttackBonus = 0;
     private int globalHpBonus = 0;
 
-    // 最大配置数
-    public int maxUnitCount = 3;
-
-    // 初期化
-    private void Start()
-    {
-        foreach(UnitStats.UnityType type in System.Enum.GetValues(typeof(UnitStats.UnityType)))
-        {
-            attackBounusPerType[type] = 0;
-            hpBounusPerType[type] = 0;
-        }
-    }
-
     // 報酬適用
     public void ApplyReward(RewardData reward)
     {
         switch(reward.rewardType)
         {
-            case RewardType.AddUnit:
-                AddUnitLimit(reward.value); 
+            case RewardType.AddTotalUnit:
+                GameManager.instance.totalUnitLimit += reward.value;
                 break;
-            case RewardType.AddMaxUnit:
-                AddMaxUnitLimit(reward.value); 
+            case RewardType.AddUnitLimit:
+                GameManager.instance.unitLimit[reward.unityType] += reward.value;
                 break;
             case RewardType.AllAttackUp:
                 globalAttackBonus += reward.value;
@@ -61,32 +64,19 @@ public class UnitManager : MonoBehaviour
         Debug.Log("報酬適用完了");
     }
 
-    private void AddUnitLimit(int value)
-    {
-        maxUnitCount += value;
-    }
-
-    private void AddMaxUnitLimit(int value)
-    {
-       maxUnitCount += value;
-    }
-
     // 新ユニットにバフを適用　プレハブから生成した直後呼ぶ
     public void ApplyStatsToUnit(UnitStats stats)
     {
-        // グローバルバフ
-        stats.attackPower += globalAttackBonus;
-        stats.Maxhp += globalHpBonus;
+        // 基礎値から再計算
+        stats.attackPower = stats.baseattackPower + globalAttackBonus + attackBounusPerType[stats.unityType];
 
-        // 兵種固有バフ
-        stats.attackPower += attackBounusPerType[stats.unityType];
-        stats.Maxhp += hpBounusPerType[stats.unityType];
+        stats.MaxHP = stats.baseMaxhp + globalHpBonus + hpBounusPerType[stats.unityType];
 
-        // HPを更新
-        stats.currentHP = stats.Maxhp;
+        stats.currentHP = stats.MaxHP;
+
         if(stats.hpslider != null)
         {
-            stats.hpslider.maxValue = stats.Maxhp;
+            stats.hpslider.maxValue = stats.MaxHP;
             stats.hpslider.value = stats.currentHP;
         }
     }

@@ -8,6 +8,15 @@ public class EnemyPlaceTile : MonoBehaviour
 
     public GameObject hpBarPrefab;
 
+    private Renderer rend;
+    private Color defaultColor;
+
+    private void Awake()
+    {
+        rend = GetComponent<Renderer>();
+        defaultColor = rend.material.color;
+    }
+
     public bool EnemyPlaceUnit(GameObject enemyPrefab)
     {
         if (isOccupied) return false;
@@ -24,6 +33,7 @@ public class EnemyPlaceTile : MonoBehaviour
         if (stats != null)
         {
             ApplyColor(stats.unityType);
+            ApplyEnemyBuff(stats);
         }
 
         isOccupied = true;
@@ -58,7 +68,32 @@ public class EnemyPlaceTile : MonoBehaviour
         UnitStats stats = placedUnit.GetComponent<UnitStats>();
 
         stats.hpslider = slider;
-        slider.maxValue = stats.Maxhp;
+        slider.maxValue = stats.MaxHP;
         slider.value = stats.currentHP;
+    }
+
+    // ステージクリア毎の再生成時ステータス強化
+    public void ApplyEnemyBuff(UnitStats stats)
+    {
+        EnemySpawner spawner = FindAnyObjectByType<EnemySpawner>();
+
+        // ステータス増加
+        stats.MaxHP += spawner.hpBonus;
+        stats.attackPower +=spawner.attackBonus;
+
+        // HPバー更新
+        stats.currentHP = stats.MaxHP;
+        if(stats.hpslider != null)
+        {
+            stats.hpslider.maxValue = stats.MaxHP;
+            stats.hpslider.value = stats.currentHP;
+        }
+    }
+
+    // タイルの初期化(ステージリセット用)
+    public void ResetTile()
+    {
+        isOccupied = false;
+        rend.material.color = defaultColor;
     }
 }
