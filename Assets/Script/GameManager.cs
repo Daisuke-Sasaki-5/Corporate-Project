@@ -13,9 +13,16 @@ public class GameManager : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject startUI;
     [SerializeField] private GameObject escUI;
+    [SerializeField] private GameObject TitleButton;
     [SerializeField] private RewardUI rewardUI;
 
+    [Header("Camera")]
+    [SerializeField] private CameraController cameraController;
+
     public int stage = 1;
+
+    [Header("Game Clear Settings")]
+    public int maxStage = 20;
 
     // ユニット最大数
     public Dictionary<UnitStats.UnityType, int> unitLimit = new Dictionary<UnitStats.UnityType, int>()
@@ -99,6 +106,11 @@ public class GameManager : MonoBehaviour
             escUI.SetActive(false);
         }
 
+        if (TitleButton != null)
+        {
+            TitleButton.SetActive(false);
+        }
+
         if(rewardUI != null && rewardUI.uiRoot != null)
         {
             rewardUI.uiRoot.SetActive(false);
@@ -141,14 +153,17 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
+    // ゲームをスタートさせる
     private void StartGame()
     {
+        if(currentTotalPlaced < 1)return;
         isGameStart = true;
         Time.timeScale = 1f;
 
         if(startUI != null)
             startUI.SetActive(false);
-
+        if(cameraController != null)
+            cameraController.MoveToBattle();
     }
 
     void Update()
@@ -185,6 +200,10 @@ public class GameManager : MonoBehaviour
         stage++;
 
         Debug.Log("次のStageへ");
+
+        // カメラを配置フェーズに戻す
+        if(cameraController != null)
+            cameraController.ResetToStart();
 
         // プレイヤーユニット削除
         ClearAllPlayer();
@@ -253,6 +272,14 @@ public class GameManager : MonoBehaviour
     private void GameWin()
     {
        isGameOver = true;
+
+        // 最終ステージならゲームクリア
+        if (stage >= maxStage)
+        {
+            GameClear();
+            return;
+        }
+
         Debug.Log("勝利");
 
         // 報酬UIを表示
@@ -265,9 +292,18 @@ public class GameManager : MonoBehaviour
     private void GameLose()
     {
         isGameOver = true;
+
         Debug.Log("敗北");
 
         ShowEndUI();
+    }
+
+    private void GameClear()
+    {
+        Debug.Log("GAME CLEAR");
+
+        Time.timeScale = 1f;
+        FadeManager.instance.FadeToScene("ResultScene");
     }
 
     private void ShowEndUI()
@@ -275,6 +311,11 @@ public class GameManager : MonoBehaviour
         if (escUI != null)
         {
             escUI.SetActive(true); 
+        }
+
+        if(TitleButton != null)
+        {
+            TitleButton.SetActive(true);
         }
     }
 
@@ -287,6 +328,21 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         stage = 1;
+
+        if(cameraController != null)
+        {
+            cameraController.ResetToStart();
+        }
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OnTitleButton()
+    {
+
+        Time.timeScale = 1;
+
+        // タイトルシーンをロード
+        SceneManager.LoadScene("Title");
     }
 }

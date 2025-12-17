@@ -43,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
         switch (roll)
         {
             case 0:
-                attackBonus += 5;
+                attackBonus += 10;
                 Debug.Log("UŒ‚—Í ‘‰Á");
                 break;
             case 1:
