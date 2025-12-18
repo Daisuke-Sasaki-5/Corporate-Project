@@ -24,6 +24,10 @@ public class GameManager : MonoBehaviour
     [Header("Game Clear Settings")]
     public int maxStage = 20;
 
+    [Header("AudioClip")]
+    public AudioClip readyBGM;
+    public AudioClip battleBGM;
+
     // ユニット最大数
     public Dictionary<UnitStats.UnityType, int> unitLimit = new Dictionary<UnitStats.UnityType, int>()
     {
@@ -150,6 +154,7 @@ public class GameManager : MonoBehaviour
     // ==== Startボタンから呼ぶ ====
     public void onClickStartGame()
     {
+        AudioManager.instance.PlayBGM(battleBGM);
         StartGame();
     }
 
@@ -198,6 +203,9 @@ public class GameManager : MonoBehaviour
     public void NextStage()
     {
         stage++;
+
+        // BGMを戻す
+        AudioManager.instance.PlayBGM(readyBGM);
 
         Debug.Log("次のStageへ");
 
@@ -326,6 +334,9 @@ public class GameManager : MonoBehaviour
 
     public void OnClickRetry()
     {
+        // BGMを戻す
+        AudioManager.instance.PlayBGM(readyBGM);
+
         Time.timeScale = 1f;
         stage = 1;
 

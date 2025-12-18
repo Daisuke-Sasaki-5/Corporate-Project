@@ -19,6 +19,8 @@ public class UIUnitSelect : MonoBehaviour
     [Header("全体配置数テキスト")]
     public TMP_Text totalUnitText;
 
+    public UnitStatusPanel statusPanel;
+
     private void Update()
     {
         UpdateCountUI();
@@ -33,6 +35,11 @@ public class UIUnitSelect : MonoBehaviour
         bowCountText.text = $"{gm.placedCount[UnitStats.UnityType.Bow]}/{gm.unitLimit[UnitStats.UnityType.Bow]}";
 
         totalUnitText.text = $"Total Units {gm.currentTotalPlaced}/{gm.totalUnitLimit}";
+    }
+
+    public void OnClickStatusButton()
+    {
+        statusPanel.Toggle();
     }
 
     public void PickSword()

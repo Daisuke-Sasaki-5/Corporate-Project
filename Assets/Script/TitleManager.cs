@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 public class TitleManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI starttext;
-    [SerializeField] private GameObject Tutorial;
+    [SerializeField] private AudioClip readyBGM;
     private bool isLoading = false;
 
     void Start()
@@ -17,6 +17,8 @@ public class TitleManager : MonoBehaviour
         // カーソルを表示
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+
+        AudioManager.instance.PlayBGM(readyBGM);
 
         // スタートテキストを点滅させる
         StartCoroutine(BlinkStartText());
@@ -41,25 +43,8 @@ public class TitleManager : MonoBehaviour
         Debug.Log("start");
         if(isLoading)return;
         isLoading = true;
-        FadeManager.instance.FadeToScene("GamaPlayScene");
+        FadeManager.instance.FadeToScene("GamePlayScene");
     }
-
-    /// <summary>
-    /// チュートリアルを表示
-    /// </summary>
-    public void OnClickTutorial()
-    {
-        Tutorial.SetActive(true);
-    }
-
-    /// <summary>
-    /// チュートリアルを閉じる
-    /// </summary>
-    public void OnClickBack()
-    {
-        Tutorial.SetActive(false);
-    }
-
     /// <summary>
     /// ゲームの終了
     /// </summary>
@@ -68,8 +53,8 @@ public class TitleManager : MonoBehaviour
         Debug.Log("ゲーム終了");
         Application.Quit();
 
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+//#if UNITY_EDITOR
+//        UnityEditor.EditorApplication.isPlaying = false;
+//#endif
     }
 }

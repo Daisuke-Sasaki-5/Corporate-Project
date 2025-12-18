@@ -80,4 +80,24 @@ public class UnitManager : MonoBehaviour
             stats.hpslider.value = stats.currentHP;
         }
     }
+
+    // 最終的なステータス数値(攻撃力)
+    public (int finalValue, int bonus) GetAttackWithBonus(UnitStats.UnityType type, UnitStats baseStats)
+    {
+        int bonus = globalAttackBonus + attackBounusPerType[type];
+
+        int finalValue = baseStats.baseattackPower + bonus;
+
+        return (finalValue, bonus);
+    }
+
+    // 最終的なステータス数値(HP)
+    public (int finalValue, int bonus) GetHPWithBonus(UnitStats.UnityType type, UnitStats baseStats)
+    {
+        int bonus = globalHpBonus + hpBounusPerType[type];
+
+        int finalValue = baseStats.baseMaxhp + bonus;
+
+        return (finalValue, bonus);
+    }
 }
