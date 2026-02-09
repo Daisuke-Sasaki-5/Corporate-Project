@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
@@ -25,8 +26,11 @@ public class EnemySpawner : MonoBehaviour
 
         for (int i = 0; i < spawnCount; i++)
         {
+            int index = Random.Range(0, freeTiles.Count);
+
             // タイルをランダムに選択
-            EnemyPlaceTile tile = enemyTiles[Random.Range(0, freeTiles.Count)];
+            EnemyPlaceTile tile = freeTiles[index];
+            freeTiles.RemoveAt(index); // 二度同じタイルを使わせない
 
             // 敵プレハブをランダムに選択
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
@@ -38,22 +42,12 @@ public class EnemySpawner : MonoBehaviour
     // ステージクリアごとに１回だけ呼ぶ
     public void IncreaseDifficluty()
     {
-        int roll = Random.Range(0, 3);
+        int roll = Random.Range(0, 2);
 
-        switch (roll)
-        {
-            case 0:
-                attackBonus += 10;
-                Debug.Log("攻撃力 増加");
-                break;
-            case 1:
-                hpBonus += 10;
-                Debug.Log("HP 増加");
-                break;
-            case 2:
-                spawnCount++;
-                Debug.Log("スポーン数 増加");
-                break;
-        }
+        if(roll == 0) attackBonus += 10;
+        else hpBonus += 10;
+
+        if(GameManager.instance.stage % 4 == 0) // 4ステージごと
+            spawnCount++;
     }
 }

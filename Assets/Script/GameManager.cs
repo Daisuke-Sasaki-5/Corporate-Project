@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject TitleButton;
     [SerializeField] private RewardUI rewardUI;
 
+    [SerializeField] private LoseUI loseUI;
+
     [Header("Camera")]
     [SerializeField] private CameraController cameraController;
 
@@ -154,6 +156,7 @@ public class GameManager : MonoBehaviour
     // ==== Startボタンから呼ぶ ====
     public void onClickStartGame()
     {
+        if (currentTotalPlaced < 1) return;
         AudioManager.instance.PlayBGM(battleBGM);
         StartGame();
     }
@@ -161,7 +164,6 @@ public class GameManager : MonoBehaviour
     // ゲームをスタートさせる
     private void StartGame()
     {
-        if(currentTotalPlaced < 1)return;
         isGameStart = true;
         Time.timeScale = 1f;
 
@@ -303,7 +305,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("敗北");
 
-        ShowEndUI();
+        loseUI.Show();
     }
 
     private void GameClear()
@@ -340,7 +342,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         stage = 1;
 
-        if(cameraController != null)
+        // ユニットバフをリセット
+        if (UnitManager.instance != null)
+            UnitManager.instance.ResetAllBuffs();
+
+        if (cameraController != null)
         {
             cameraController.ResetToStart();
         }
@@ -352,6 +358,10 @@ public class GameManager : MonoBehaviour
     {
 
         Time.timeScale = 1;
+
+        // ユニットバフをリセット
+        if(UnitManager.instance != null) 
+            UnitManager.instance.ResetAllBuffs();
 
         // タイトルシーンをロード
         SceneManager.LoadScene("Title");

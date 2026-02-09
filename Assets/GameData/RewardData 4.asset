@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RewardData 4
   m_EditorClassIdentifier: 
   rewardType: 2
-  value: 10
+  value: 20
   unityType: 0
-  displayName: All Attack + 10
+  displayName: All Attack + 20

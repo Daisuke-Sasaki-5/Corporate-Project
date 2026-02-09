@@ -56,9 +56,9 @@ public class UnitStats : MonoBehaviour
         // ŽO‚·‚­‚Ý
 
         // Œ• > ‘„ > ‹| > Œ•
-        if (attacker == UnityType.Sword && defender == UnityType.Spear) return 1.5f;
-        if (attacker == UnityType.Spear && defender == UnityType.Bow) return 1.5f;
-        if (attacker == UnityType.Bow && defender == UnityType.Sword) return 1.5f;
+        if (attacker == UnityType.Sword && defender == UnityType.Spear) return 1.3f;
+        if (attacker == UnityType.Spear && defender == UnityType.Bow) return 1.3f;
+        if (attacker == UnityType.Bow && defender == UnityType.Sword) return 1.3f;
 
         // •s—˜‘¤
         if (attacker == UnityType.Spear && defender == UnityType.Sword) return 0.75f;

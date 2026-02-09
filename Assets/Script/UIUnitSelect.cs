@@ -19,6 +19,9 @@ public class UIUnitSelect : MonoBehaviour
     [Header("全体配置数テキスト")]
     public TMP_Text totalUnitText;
 
+    [Header("ステージ表示")]
+    public TMP_Text stageCountText;
+
     public UnitStatusPanel statusPanel;
 
     private void Update()
@@ -29,6 +32,9 @@ public class UIUnitSelect : MonoBehaviour
     private void UpdateCountUI()
     {
         var gm = GameManager.instance;
+
+        // ステージ数表示
+        stageCountText.text = $"Stage:{gm.stage}";
 
         swordCountText.text = $"{gm.placedCount[UnitStats.UnityType.Sword]}/{gm.unitLimit[UnitStats.UnityType.Sword]}";
         spearCountText.text = $"{gm.placedCount[UnitStats.UnityType.Spear]}/{gm.unitLimit[UnitStats.UnityType.Spear]}";

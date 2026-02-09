@@ -5,10 +5,12 @@ using TMPro;
 using System;
 using System.Collections;
 using JetBrains.Annotations;
+using System.Runtime.CompilerServices;
 
 public class TitleManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI starttext;
+    [SerializeField] private TutorialUI tutorialUI;
     [SerializeField] private AudioClip readyBGM;
     private bool isLoading = false;
 
@@ -33,6 +35,11 @@ public class TitleManager : MonoBehaviour
             starttext.alpha = 0;
             yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    public void OnClickTutorial()
+    {
+        tutorialUI.Open();
     }
 
     /// <summary>

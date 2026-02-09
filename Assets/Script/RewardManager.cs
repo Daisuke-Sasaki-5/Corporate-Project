@@ -11,6 +11,8 @@ public class RewardManager : MonoBehaviour
     [Header("UIプレハブへの参照")]
     public RewardUI rewardUI;
 
+    public RewardData totalUnitReward;
+
     private void Awake()
     {
         instance = this;
@@ -19,8 +21,18 @@ public class RewardManager : MonoBehaviour
     // ステージ勝利時に呼ぶ
     public void ShowRewards()
     {
-        // ランダムに3つ抽選
-        List<RewardData> selected = PickRandomRewards(3);
+        List<RewardData> selected;
+
+        // 3ステージごとに呼ばれる
+        if (GameManager.instance.stage % 3 == 0)
+        {
+            selected = PickRewardsWithTotalUnit(3);
+        }
+        else
+        {
+            // ランダムに3つ抽選
+            selected = PickRandomRewards(3);
+        }
 
         rewardUI.Show(selected);
     }
@@ -45,5 +57,26 @@ public class RewardManager : MonoBehaviour
     public void ApplyReward(RewardData reward)
     {
         UnitManager.instance.ApplyReward(reward);
+    }
+
+    List<RewardData> PickRewardsWithTotalUnit(int count)
+    {
+        List<RewardData> result = new List<RewardData> ();
+
+        // 確定枠
+        result.Add(totalUnitReward);
+
+        // プールから除外してランダム
+        List<RewardData> pool = new List<RewardData> (rewardPool);
+        pool.Remove(totalUnitReward);
+
+        while(result.Count < count && pool.Count > 0)
+        {
+            int index = Random.Range (0, pool.Count);
+            result.Add(pool[index]);
+            pool.RemoveAt(index);
+        }
+
+        return result;
     }
 }

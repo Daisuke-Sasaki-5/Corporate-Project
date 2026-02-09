@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class UnitController : MonoBehaviour
     private float attackCooldown = 1.5f;
     private float attackTimer = 0f;
 
+    bool isAttacking = false;
+
     private UnitStats stats;
 
     void Start()
@@ -27,9 +30,18 @@ public class UnitController : MonoBehaviour
     /// </summary>
     void Update()
     {
+        // 攻撃中は何もしない
+        if (isAttacking) return;
+
         attackTimer += Time.deltaTime;
 
-        // ターゲットが近くにいないのならターゲットを探す
+        // ターゲット変更すべき状況なら再取得
+        if(ShouldChangeTarget())
+        {
+            target = FindClosestTarget();
+        }
+
+        // まだターゲットがいなければターゲットを探す
         if (target == null)
         {
             target = FindClosestTarget();
@@ -41,7 +53,7 @@ public class UnitController : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, target.transform.position);
 
-        // ターゲット近くに移動
+        // 射程外ならターゲット近くに移動
         if(distance > stats.AttackRange)
         {
             MoveTowards(target.transform.position);
@@ -117,10 +129,27 @@ public class UnitController : MonoBehaviour
                 int finalDamage = Mathf.RoundToInt(stats.attackPower * multiplier);
 
                 // 敵にダメージを与える
-                enemyStats.TakeDamage(stats.attackPower);
+                enemyStats.TakeDamage(finalDamage);
 
                 Debug.Log($"{gameObject.name}({stats.unityType})→{target.name}({enemyStats.unityType})ダメージ:{finalDamage}");
             }
         }
+    }
+
+    // ターゲット変更条件を設定
+    bool ShouldChangeTarget()
+    {
+        if(target == null) return true;
+
+        var stats = target.GetComponent<UnitStats>();
+
+        // ターゲットが死んだとき
+        if (stats == null || stats.IsDead) return true;
+
+        // ターゲットが射程外に出た時
+        float dist = Vector3.Distance(transform.position, target.transform.position);
+        if(dist > stats.AttackRange * 1.5f) return true;
+
+        return false;
     }
 }

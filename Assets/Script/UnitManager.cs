@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Rendering;
 
 public class UnitManager : MonoBehaviour
 {
@@ -99,5 +100,20 @@ public class UnitManager : MonoBehaviour
         int finalValue = baseStats.baseMaxhp + bonus;
 
         return (finalValue, bonus);
+    }
+
+    // プレイヤーステータスリセット
+    public void ResetAllBuffs()
+    {
+        globalAttackBonus = 0;
+        globalHpBonus = 0;
+
+        var attackKeys = new List<UnitStats.UnityType>(attackBounusPerType.Keys);
+        foreach(var key in attackKeys) attackBounusPerType[key] = 0;
+
+        var hpKeys = new List<UnitStats.UnityType>(hpBounusPerType.Keys);
+        foreach (var key in hpKeys) hpBounusPerType[key] = 0;
+
+        Debug.Log("ユニットバフをリセット");
     }
 }
